@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% set active_page = "leveleducationmajor" %}
+
+{% block title %}Level of Education by Major{% endblock %}
+
+{% block heading %}Level of Education by Major{% endblock %}
+
+{% block body %}
+<h2>Select a major</h2>
+<form action="/leveleducationmajor">
+  <select name="major">
+		{{ options }}
+  </select>
+  <br><br>
+  <input type="submit">
+</form>
+{% endblock %}

@@ -7,6 +7,8 @@ import json
 
 app = Flask(__name__)
 
+#level of education by major
+
 @app.route('/')
 def render_about():
     return render_template('graduationdata.html')
@@ -50,6 +52,58 @@ def get_dropdown_options_majors():
         majors = json.load(graduates_data)
     for m in majors:
         options += Markup("<option value=\"" + m["Education"]["Major"]+ "\">" + m["Education"]["Major"] + "</option>")
+    return options
+    
+    
+    
+    
+    #occupation status
+    
+    
+    
+    
+    
+    @app.route('/')
+    def render_about():
+        return render_template('graduationdata.html')
+
+@app.route('/occupationstatus')
+def render_occupationstatus():
+    options = ""
+    with open('graduates.json') as occupation_data:
+        occupationstat = json.load(occupation_data)
+    
+    
+    
+    
+    if "occupation" in request.args:
+        occupation = request.args['employer type']
+        business/industry = 0
+        educational institution = 0
+        government = 0
+        for i in occupationstat:
+            if i["Employment"]["Employer Type"] == occupationstat:
+                business/industry1 = i["Employment"]["Employer Type"]["Business/Industry"]
+                educational institution1 = i["Employment"]["Employer Type"]["Educational Institution"]
+                government1 = i["Employment"]["Employer Type"]["Government"]
+        options = get_dropdown_options_occupationstatus()
+        return render_template('leveleducationmajorresponse.html', options=options, business/industry = business/industry1, educational institution = educational institution1, government = government1)
+   
+   
+   
+    options = get_dropdown_options_occupationstatus()
+    
+    return render_template('occupationstatus.html',options = options)
+   
+   
+   
+   
+def get_dropdown_options_occupationstatus():
+    options = ""
+    with open('graduates.json') as occupation_data:
+        occupationstat = json.load(occupation_data)
+    for o in occupationstat:
+        options += Markup("<option value=\"" + m["Employment"]["Employer Type"]+ "\">" + m["Employment"]["Employer Type"] + "</option>")
     return options
    
    

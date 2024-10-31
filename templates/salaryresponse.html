@@ -1,0 +1,14 @@
+{% extends "salary.html" %}
+
+{% block body %}
+{{super()}}
+
+<p> The highest salary for a person with a degree in <!-- degree name --> is <!-- salary number --> as of 2015. </p>
+<p> The lowest salary for a person with a degree in <!-- degree name --> is <!-- salary number --> as of 2015. </p>
+<p> The mean salary for a person with a degree in <!-- degree name --> is <!-- salary number --> as of 2015. </p>
+<p> The median salary for a person with a degree in <!-- degree name --> is <!-- salary number --> as of 2015. </p>
+<p> The quantity salary for a person with a degree in <!-- degree name --> is <!-- salary number --> as of 2015. </p>
+<p> The standard deviation salary for a person with a degree in <!-- degree name --> is <!-- salary number --> as of 2015. </p>
+<h3> Any data after 2015 is not recorded in this dataset. </h3>
+
+{% endblock %}

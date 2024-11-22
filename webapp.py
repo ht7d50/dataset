@@ -43,7 +43,23 @@ def render_leveleducationmajor():
     
     return render_template('leveleducationmajor.html',options = options)
    
-   
+@app.route('/occupationstatus')
+def render_occupation():
+    with open('graduates.json') as graduates_data:
+        occupations = json.load(graduates_data)
+    options = get_dropdown_options_majors()
+    if "occupation" in request.args:
+        occupation = request.args['occupation']
+        BusinessIndustry = 0
+        EducationalInstitution = 0
+        Government = 0
+        for i in occupations:
+            if i["Education"]["Major"] == occupation:
+                BusinessIndustry1 = i["Employment"]["Employer Type"]["Business/Industry"]
+                EducationalInstitution1 = i["Employment"]["Employer Type"]["Educational Institution"]
+                Government1 = i["Employment"]["Employer Type"]["Government"]
+        return render_template('occupationstatusresponse.html', options = options, BusinessIndustry=BusinessIndustry1, EducationalInstitution = EducationalInstitution1, Government = Government1)
+    return render_template('occupationstatus.html', options = options)
    
    
 def get_dropdown_options_majors():

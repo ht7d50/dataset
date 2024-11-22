@@ -7,8 +7,6 @@ import json
 
 app = Flask(__name__)
 
-#level of education by major
-
 @app.route('/')
 def render_about():
     return render_template('graduationdata.html')
@@ -61,6 +59,29 @@ def render_occupation():
         return render_template('occupationstatusresponse.html', options = options, BusinessIndustry=BusinessIndustry1, EducationalInstitution = EducationalInstitution1, Government = Government1)
     return render_template('occupationstatus.html', options = options)
    
+@app.route('/salary')
+def render_salary():
+    with open('graduates.json') as graduates_data:
+        salary = json.load(graduates_data)
+    options = get_dropdown_options_majors()
+    if "salary" in request.args:
+        salaries = request.args['salary']
+        Highest = 0
+        Lowest = 0
+        Mean = 0
+        Median = 0
+        Quantity = 0
+        StandardDeviation = 0
+        for i in salary:
+            if i["Salaries"] == salaries:
+                Highest = i["Salaries"]["Highest"]
+                Lowest = i["Salaries"]["Lowest"]
+                Mean = i["Salaries"]["Mean"]
+                Median = i["Salaries"]["Median"]
+                Quantity = i["Salaries"]["Quantity"]
+                StandardDeviation = i["Salaries"]["Standard Deviation"]
+        return render_template('salaryresponse.html', options = options, Highest = Highest, Lowest = Lowest, Mean = Mean, Median = Median, Quantity = Quantity, StandardDeviation = StandardDeviation)
+    return render_template('salary.html', options = options)
    
 def get_dropdown_options_majors():
     options = ""
@@ -81,4 +102,4 @@ def is_localhost():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)

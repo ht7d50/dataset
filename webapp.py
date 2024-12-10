@@ -66,12 +66,12 @@ def render_salary():
     options = get_dropdown_options_majors()
     if "salary" in request.args:
         salaries = request.args['salary']
-        Highest = 0
-        Lowest = 0
-        Mean = 0
-        Median = 0
-        Quantity = 0
-        StandardDeviation = 0
+        highest = 0
+        lowest = 0
+        mean = 0
+        median = 0
+        quantity = 0
+        standardDeviation = 0
         for i in salary:
             if i["Salaries"] == salaries:
                 highest = i["Salaries"]["Highest"]

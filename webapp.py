@@ -74,13 +74,13 @@ def render_salary():
         StandardDeviation = 0
         for i in salary:
             if i["Salaries"] == salaries:
-                Highest = i["Salaries"]["Highest"]
-                Lowest = i["Salaries"]["Lowest"]
-                Mean = i["Salaries"]["Mean"]
-                Median = i["Salaries"]["Median"]
-                Quantity = i["Salaries"]["Quantity"]
-                StandardDeviation = i["Salaries"]["Standard Deviation"]
-        return render_template('salaryresponse.html', options = options, Highest = Highest, Lowest = Lowest, Mean = Mean, Median = Median, Quantity = Quantity, StandardDeviation = StandardDeviation)
+                highest = i["Salaries"]["Highest"]
+                lowest = i["Salaries"]["Lowest"]
+                mean = i["Salaries"]["Mean"]
+                median = i["Salaries"]["Median"]
+                quantity = i["Salaries"]["Quantity"]
+                standardDeviation = i["Salaries"]["Standard Deviation"]
+        return render_template('salaryresponse.html', options = options, highest = highest, lowest = lowest, mean = mean, quantity = quantity, standardDeviation = standardDeviation)
     return render_template('salary.html', options = options)
    
 def get_dropdown_options_majors():
